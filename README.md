@@ -4,6 +4,11 @@ A rebuilt website for Commercial Property Rotherham, chartered surveyors and com
 
 It's a single static page (`index.html`) with no build step. Open it in a browser, or serve the folder with any static host (GitHub Pages, Netlify, Cloudflare Pages).
 
+## Versions
+
+- `index.html`: the original rebuild (slate and yellow)
+- `cpr-red/index.html`: the same site in CPR's own brand red (#BD1622) with charcoal
+
 ## Pages
 
 The site uses hash routes:
