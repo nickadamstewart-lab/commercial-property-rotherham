@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Commercial Property Rotherham</title>
+<meta name="description" content="Offices, shops and industrial units for sale and to let across Rotherham and South Yorkshire. Local chartered surveyors, RICS regulated.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: agent's-board vernacular. Slate brand band, yellow "FOR SALE / TO LET" boards as the one loud element, quiet data-led listings below. */
+:root{
+  --paper:#F2F4F1; --surface:#FFFFFF; --sunk:#E7EBE7;
+  --ink:#152120; --ink-2:#4B5957; --ink-3:#77837F; --line:#D5DBD6;
+  --brand:#1C3836; --brand-fg:#EEF3EF; --brand-2:#2C504D;
+  --board:#F3BE1A; --board-ink:#141B1A;
+  --link:#1F5F58; --ok:#2E7D57; --focus:#E0A300;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:6px; --wrap:1180px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0E1514; --surface:#151F1E; --sunk:#1B2726;
+  --ink:#E6ECE8; --ink-2:#A9B5B1; --ink-3:#7E8B87; --line:#2A3735;
+  --brand:#14292A; --brand-fg:#EEF3EF; --brand-2:#21403E;
+  --board:#F3BE1A; --board-ink:#141B1A;
+  --link:#8CCBBF; --ok:#6CC596; --focus:#F3BE1A; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0E1514; --surface:#151F1E; --sunk:#1B2726;
+  --ink:#E6ECE8; --ink-2:#A9B5B1; --ink-3:#7E8B87; --line:#2A3735;
+  --brand:#14292A; --brand-fg:#EEF3EF; --brand-2:#21403E;
+  --board:#F3BE1A; --board-ink:#141B1A;
+  --link:#8CCBBF; --ok:#6CC596; --focus:#F3BE1A; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--brand)}
+a{color:var(--link)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+h1,h2,h3{font-family:var(--display);font-stretch:78%;font-weight:800;line-height:1.02;letter-spacing:-.01em;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:var(--r);border:1.5px solid transparent;font:600 15px/1 var(--body);cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn-board{background:var(--board);color:var(--board-ink)}
+.btn-board:hover{filter:brightness(1.06)}
+.btn-ghost{background:transparent;color:inherit;border-color:currentColor}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-sm{min-height:36px;padding:0 12px;font-size:14px}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--brand);color:var(--brand-fg)}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:64px}
+.logo{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;margin-right:auto}
+.logo-mark{width:38px;height:38px;border-radius:4px;background:var(--board);color:var(--board-ink);display:grid;place-items:center;font:900 15px/1 var(--display);font-stretch:70%;letter-spacing:.02em}
+.logo-txt{font:800 18px/1.05 var(--display);font-stretch:75%;text-transform:uppercase;letter-spacing:.02em}
+.logo-txt small{display:block;font:500 10.5px/1.3 var(--mono);letter-spacing:.1em;opacity:.7;text-transform:uppercase}
+.nav{display:flex;gap:4px}
+.nav a{color:inherit;text-decoration:none;padding:8px 12px;border-radius:4px;font-weight:500;font-size:15px}
+.nav a:hover{background:var(--brand-2)}
+.nav a[aria-current="page"]{box-shadow:inset 0 -3px 0 var(--board)}
+.top-phone{color:inherit;text-decoration:none;font:500 15px var(--mono);white-space:nowrap}
+.menu-btn{display:none;background:none;border:1.5px solid currentColor;color:inherit;border-radius:4px;min-height:40px;padding:0 12px;font:600 14px var(--body);cursor:pointer}
+.shortlist-link{display:inline-flex;align-items:center;gap:6px;color:inherit;text-decoration:none;font-size:15px;padding:8px 10px;border-radius:4px}
+.shortlist-link:hover{background:var(--brand-2)}
+.badge{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--board);color:var(--board-ink);font:600 12px/20px var(--mono);text-align:center}
+@media (max-width:900px){
+  .nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--brand);flex-direction:column;padding:8px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));border-top:1px solid var(--brand-2)}
+  .nav.open{display:flex}
+  .nav a{padding:12px}
+  .menu-btn{display:inline-block}
+  .top-phone{display:none}
+}
+
+/* Hero */
+.hero{background:var(--brand);color:var(--brand-fg);padding-block:56px 64px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:end}
+.hero h1{font-size:clamp(44px,8vw,96px);font-stretch:68%;font-weight:900;text-transform:uppercase;line-height:.92}
+.hero h1 em{font-style:normal;color:var(--board)}
+.hero-lede{margin-top:20px;font-size:18px;max-width:44ch;color:color-mix(in srgb,var(--brand-fg) 82%,transparent)}
+.hero-facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:28px;font:500 13px/1.4 var(--mono);letter-spacing:.04em;text-transform:uppercase;opacity:.85}
+.hero-facts span::before{content:"■ ";color:var(--board)}
+.search{background:var(--surface);color:var(--ink);border-radius:8px;padding:22px;display:grid;gap:14px;box-shadow:0 18px 50px -20px rgba(0,0,0,.5)}
+.search h2{font-size:26px}
+.seg{display:grid;grid-template-columns:1fr 1fr 1fr;border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{display:flex;align-items:center;justify-content:center;min-height:42px;font-weight:600;font-size:14px;cursor:pointer;border-left:1.5px solid var(--line)}
+.seg label:first-of-type{border-left:0}
+.seg input:checked+label{background:var(--ink);color:var(--paper)}
+.seg input:focus-visible+label{outline:3px solid var(--focus);outline-offset:-3px}
+.field{display:grid;gap:6px}
+.field>span,.flabel{font:600 13px var(--body);color:var(--ink-2)}
+.field input,.field select,.field textarea{width:100%;min-height:44px;padding:10px 12px;border:1.5px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);font:inherit;font-size:15px}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ink);outline:none}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr;gap:32px}.hero{padding-block:40px 40px}}
+
+/* Sections */
+section.band{padding-block:72px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:28px}
+.sec-head h2{font-size:clamp(32px,4.5vw,48px)}
+.sec-head p{color:var(--ink-2);max-width:56ch;margin-top:8px}
+
+/* Sector strip */
+.sectors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--line)}
+.sector{display:grid;gap:10px;padding:22px 20px 22px 0;text-decoration:none;color:inherit;border-right:1px solid var(--line);padding-left:20px}
+.sector:first-child{padding-left:0}
+.sector:last-child{border-right:0}
+.sector svg{width:72px;height:48px;color:var(--ink)}
+.sector b{font:800 24px/1 var(--display);font-stretch:75%;text-transform:uppercase}
+.sector span{color:var(--ink-2);font-size:14px}
+.sector:hover b{text-decoration:underline;text-decoration-color:var(--board);text-decoration-thickness:4px;text-underline-offset:4px}
+@media (max-width:760px){.sectors{grid-template-columns:1fr 1fr}.sector{padding:18px 12px!important;border-bottom:1px solid var(--line)}}
+
+/* Property cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.card:hover{border-color:var(--ink-3)}
+.plate{position:relative;aspect-ratio:16/10;max-width:100%;background:var(--sunk);display:grid;place-items:center;overflow:hidden;color:var(--ink-2)}
+.plate svg.draw{width:62%;height:auto}
+.plate::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:24px 24px;opacity:.55;pointer-events:none;mix-blend-mode:multiply}
+.boardtag{position:absolute;left:14px;top:14px;z-index:2;font:900 15px/1 var(--display);font-stretch:70%;letter-spacing:.06em;text-transform:uppercase;padding:8px 10px 7px;border-radius:3px;background:var(--board);color:var(--board-ink);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.boardtag.let{background:var(--board-ink);color:var(--board)}
+.heart{position:absolute;right:12px;top:12px;z-index:3;width:40px;height:40px;border-radius:50%;border:0;background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.heart svg{width:20px;height:20px}
+.heart[aria-pressed="true"]{color:#D2433A}
+.heart[aria-pressed="true"] path{fill:currentColor}
+.card-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card-type{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.card h3{font-size:24px;font-stretch:80%}
+.card h3 a{color:inherit;text-decoration:none}
+.card h3 a::after{content:"";position:absolute;inset:0;z-index:1}
+.card-addr{color:var(--ink-2);font-size:14.5px}
+.card-stats{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.price{font:800 22px/1.1 var(--display);font-stretch:85%}
+.price small{display:block;font:500 12px/1.4 var(--mono);color:var(--ink-3);letter-spacing:.02em}
+.size{font:500 14px var(--mono);color:var(--ink-2);text-align:right}
+.size small{display:block;font-size:12px;color:var(--ink-3)}
+
+/* Two paths */
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.path{border-radius:8px;padding:32px;display:grid;gap:14px;align-content:start}
+.path h3{font-size:34px;text-transform:uppercase;font-stretch:70%}
+.path p{max-width:46ch}
+.path ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.path.a{background:var(--board);color:var(--board-ink)}
+.path.b{background:var(--surface);border:1.5px solid var(--ink)}
+.path .btn{justify-self:start;margin-top:6px}
+@media (max-width:760px){.paths{grid-template-columns:1fr}.path{padding:24px}}
+
+/* Services */
+.svc-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:0 40px}
+.svc{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;padding:22px 0;border-top:1px solid var(--line)}
+.svc svg{grid-row:span 2;width:28px;height:28px;color:var(--link);margin-top:2px}
+.svc h3{font-size:22px;font-stretch:82%}
+.svc p{color:var(--ink-2);font-size:15px;grid-column:2}
+
+/* Credentials strip */
+.creds{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-block:28px;border-block:1px solid var(--line)}
+.cred b{display:block;font:800 34px/1 var(--display);font-stretch:72%}
+.cred span{font-size:14px;color:var(--ink-2)}
+@media (max-width:760px){.creds{grid-template-columns:1fr 1fr}}
+
+/* Listings page */
+.page-head{background:var(--brand);color:var(--brand-fg);padding-block:36px 32px}
+.page-head h1{font-size:clamp(38px,6vw,64px);text-transform:uppercase;font-stretch:68%;font-weight:900}
+.page-head p{margin-top:10px;max-width:60ch;opacity:.85}
+.crumbs{font:500 13px var(--mono);margin-bottom:14px;opacity:.8}
+.crumbs a{color:inherit}
+.list-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:32px;padding-block:32px 72px;align-items:start}
+.filters{position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px);display:grid;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px}
+.filters fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+.filters legend{font:600 13px var(--body);color:var(--ink-2);margin-bottom:6px;padding:0}
+.chk{display:flex;align-items:center;gap:10px;font-size:15px;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--brand)}
+.chk .ct{margin-left:auto;font:500 12px var(--mono);color:var(--ink-3)}
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:20px}
+.toolbar .count{margin-right:auto;font-weight:600}
+.toolbar select{min-height:40px;padding:0 10px;border:1.5px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);font:inherit;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--sunk);border:0;color:var(--ink);border-radius:999px;padding:6px 12px;font:500 13px var(--body);cursor:pointer}
+.filter-toggle{display:none}
+.empty{background:var(--surface);border:1.5px dashed var(--line);border-radius:8px;padding:40px 24px;text-align:center;display:grid;gap:12px;justify-items:center}
+.empty h3{font-size:28px}
+.empty p{color:var(--ink-2);max-width:48ch}
+.list-view .grid{grid-template-columns:1fr}
+.list-view .card{flex-direction:row}
+.list-view .plate{width:min(300px,38%);aspect-ratio:auto;flex:none}
+@media (max-width:900px){
+  .list-layout{grid-template-columns:1fr}
+  .filters{position:static;display:none}
+  .filters.open{display:grid}
+  .filter-toggle{display:inline-flex}
+  .list-view .card{flex-direction:column}.list-view .plate{width:auto;aspect-ratio:16/10}
+}
+
+/* Detail */
+.detail{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:40px;padding-block:32px 72px;align-items:start}
+.detail .plate{border-radius:8px;aspect-ratio:16/9}
+.detail .plate svg.draw{width:46%}
+.thumbs{display:flex;gap:8px;margin-top:8px;overflow-x:auto}
+.thumbs div{flex:none;width:88px;aspect-ratio:4/3;border-radius:4px;background:var(--sunk);display:grid;place-items:center;color:var(--ink-3);font:500 11px var(--mono)}
+.d-title{margin-top:28px;display:grid;gap:10px}
+.d-title h1{font-size:clamp(32px,4.4vw,52px);font-stretch:74%}
+.d-title .addr{font-size:17px;color:var(--ink-2)}
+.keyfacts{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}
+.kf{padding:16px;border-right:1px solid var(--line)}
+.kf:last-child{border-right:0}
+.kf .eyebrow{font-size:11px}
+.kf b{display:block;margin-top:8px;font:800 22px/1.1 var(--display);font-stretch:85%}
+.kf small{display:block;margin-top:4px;font:500 12px/1.35 var(--mono);color:var(--ink-3)}
+@media (max-width:700px){.keyfacts{grid-template-columns:1fr 1fr}.kf:nth-child(2){border-right:0}.kf:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+.d-sec{margin-top:40px;display:grid;gap:14px}
+.d-sec h2{font-size:28px;font-stretch:80%}
+.d-sec p{max-width:68ch;color:var(--ink-2)}
+.feat{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px 24px}
+.feat li{padding-left:22px;position:relative}
+.feat li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:10px;background:var(--board);border-radius:2px}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);background:var(--sunk)}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+tfoot td{font-weight:600;background:var(--sunk)}
+.epc{display:grid;gap:4px;max-width:420px}
+.epc-row{display:flex;align-items:center;gap:10px}
+.epc-bar{height:26px;display:flex;align-items:center;padding-left:10px;font:800 14px var(--display);color:#fff;border-radius:2px 0 0 2px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%)}
+.epc-mark{font:600 13px var(--mono);display:inline-flex;align-items:center;gap:6px;color:var(--ink)}
+.epc-mark::before{content:"◀";font-size:11px}
+.transport{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.tp{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;background:var(--surface);border:1px solid var(--line);border-radius:6px;font-size:14.5px}
+.tp span:last-child{font-family:var(--mono);color:var(--ink-2);white-space:nowrap}
+.small-print{font-size:13.5px;color:var(--ink-3);display:grid;gap:8px;max-width:72ch}
+.aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px);display:grid;gap:16px}
+.enq{background:var(--surface);border:1.5px solid var(--ink);border-radius:8px;padding:22px;display:grid;gap:14px}
+.enq h2{font-size:26px;font-stretch:78%}
+.enq .price{font-size:30px}
+.agent{display:flex;gap:12px;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.agent .logo-mark{flex:none}
+.agent div{font-size:14px;color:var(--ink-2);line-height:1.4}
+.agent b{color:var(--ink);display:block}
+.done{background:color-mix(in srgb,var(--ok) 12%,var(--surface));border:1.5px solid var(--ok);border-radius:8px;padding:18px;display:grid;gap:8px}
+.done b{color:var(--ok)}
+.copyline{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.copyline .v{font-family:var(--mono);user-select:all;overflow-wrap:anywhere}
+.copy{background:none;border:1px solid var(--line);color:var(--ink-2);border-radius:4px;padding:4px 10px;font:500 12px var(--mono);cursor:pointer;flex:none}
+.sticky-cta{display:none}
+@media (max-width:960px){
+  .detail{grid-template-columns:1fr}
+  .aside{position:static}
+  .sticky-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:15;gap:10px;background:var(--surface);border-top:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  .sticky-cta .btn{flex:1}
+  body.has-sticky{padding-bottom:72px}
+}
+
+/* Contact / about */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;padding-block:48px 72px;align-items:start}
+@media (max-width:860px){.two{grid-template-columns:1fr;gap:32px}}
+.prose{display:grid;gap:16px;max-width:64ch}
+.prose h2{font-size:32px;font-stretch:78%;margin-top:12px}
+.prose p{color:var(--ink-2)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px;display:grid;gap:16px}
+.panel h2{font-size:28px;font-stretch:78%}
+.mapcard{border-radius:8px;overflow:hidden;background:var(--brand);color:var(--brand-fg);padding:24px;display:grid;gap:10px}
+.mapcard address{font-style:normal;font-size:17px;line-height:1.5}
+.mapcard a{color:var(--board)}
+
+/* Footer */
+footer{background:var(--brand);color:var(--brand-fg);padding-block:48px 32px;font-size:14.5px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+footer h4{margin:0 0 12px;font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;opacity:.65}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+footer a{color:inherit}
+.foot-base{margin-top:40px;padding-top:20px;border-top:1px solid var(--brand-2);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font:500 12.5px var(--mono);opacity:.7}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.foot-grid{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:6px;font-size:14px;z-index:40}
+@media (max-width:600px){.top .logo-txt{font-size:15px;max-width:15ch}.top .logo-txt small{display:none}.top .wrap{gap:10px}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:no-preference){.view{animation:fade .25s ease-out}@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}}
+</style>
+
+<!-- Line drawings, reused by sector strip and listing plates -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="d-office" viewBox="0 0 120 80"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M10 76h100"/><path d="M28 76V14h44v62"/><path d="M72 76V32h22v44"/><path d="M28 14l8-6h28l8 6"/><g stroke-width="1.6"><path d="M36 22h8v8h-8zM56 22h8v8h-8zM36 36h8v8h-8zM56 36h8v8h-8zM36 50h8v8h-8zM56 50h8v8h-8z"/><path d="M78 40h10M78 50h10M78 60h10"/><path d="M45 76V66h10v10"/></g></g></symbol>
+    <symbol id="d-retail" viewBox="0 0 120 80"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M8 76h104"/><path d="M18 76V22h84v54"/><path d="M14 22l6-12h80l6 12z"/><path d="M14 22v6c0 4 10 4 10 0 0 4 10 4 10 0 0 4 10 4 10 0 0 4 10 4 10 0 0 4 10 4 10 0 0 4 10 4 10 0 0 4 10 4 10 0 0 4 10 4 10 0 0 4 12 4 12 0v-6" stroke-width="1.6"/><path d="M26 40h40v30H26zM74 40h20v36" stroke-width="1.6"/><path d="M46 40v30" stroke-width="1.6"/><circle cx="90" cy="58" r="1.6" fill="currentColor"/></g></symbol>
+    <symbol id="d-industrial" viewBox="0 0 120 80"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 76h108"/><path d="M12 76V34l26-14 26 14 26-14 20 11v45"/><path d="M22 76V48h28v28" stroke-width="1.6"/><path d="M22 54h28M22 60h28M22 66h28M22 72h28" stroke-width="1"/><path d="M62 52h14v10H62zM84 52h14v10H84z" stroke-width="1.6"/><path d="M100 26V10h6v19" stroke-width="1.6"/></g></symbol>
+    <symbol id="d-land" viewBox="0 0 120 80"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 76h108"/><path d="M14 64l30-14 30 8 32-16" stroke-dasharray="4 4"/><path d="M14 64v12M106 42v34"/><path d="M60 40V18l18 6-18 6" stroke-width="1.6"/><path d="M30 76c4-10 10-10 14 0M80 76c3-7 8-7 11 0" stroke-width="1.6"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#home" aria-label="Commercial Property Rotherham, home">
+      <span class="logo-mark">CPR</span>
+      <span class="logo-txt">Commercial Property Rotherham<small>Chartered Surveyors · RICS</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#properties">Properties</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="shortlist-link" href="#properties" id="slLink" aria-label="Shortlist">
+      <svg width="18" height="18"><use href="#i-heart"/></svg><span class="badge" id="slCount">0</span>
+    </a>
+    <span class="top-phone num">01709 721706</span>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<div class="sticky-cta" id="stickyCta" hidden></div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div style="display:grid;gap:12px;align-content:start">
+        <span class="logo"><span class="logo-mark">CPR</span><span class="logo-txt">Commercial Property Rotherham<small>Chartered Surveyors · RICS</small></span></span>
+        <p style="opacity:.8;max-width:36ch">Commercial agents and chartered surveyors for Rotherham and South Yorkshire. Offices, shops, industrial units and land.</p>
+      </div>
+      <div><h4>Property</h4><ul>
+        <li><a href="#properties" data-type="Office">Offices</a></li>
+        <li><a href="#properties" data-type="Retail">Retail &amp; shops</a></li>
+        <li><a href="#properties" data-type="Industrial">Industrial &amp; warehouse</a></li>
+        <li><a href="#contact" data-topic="requirement">Register a requirement</a></li>
+      </ul></div>
+      <div><h4>Firm</h4><ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About us</a></li>
+        <li><a href="#contact" data-topic="valuation">Book a valuation</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul></div>
+      <div><h4>Office</h4>
+        <p style="opacity:.85">Suite 7, Riverside Business Exchange<br>1 Phoenix Riverside, Sheffield Road<br>Rotherham S60 1FL</p>
+        <p class="num" style="margin-top:10px">01709 721706<br>info@cprotherham.com</p>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© Commercial Property Rotherham 2026 · Company no. 06713512</span>
+      <span>Regulated by RICS · Member, Barnsley Chamber of Commerce</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var PHONE="01709 721706", EMAIL="info@cprotherham.com";
+
+var PROPS=[
+{id:"4254",type:["Office"],tenure:"let",draw:"office",
+ title:"First-floor office suite in a managed town-centre building",
+ address:"Suites 401–403, Rise House, 18 High Street",area:"Rotherham town centre",town:"Rotherham",postcode:"S60 1PP",
+ rent:950,rentNote:"Inclusive of light, heat, power and wifi",sqft:887,m2:82.41,rv:6300,rvNote:"Assessment covers the whole building",
+ lease:"New lease",epc:[{label:"Suites",rating:56,band:"C"}],photos:6,
+ summary:"Three connecting rooms on the first floor of Rise House, a managed business centre with a café downstairs and lift access to every floor. One monthly figure covers light, heat, power and wifi, so running costs are easy to plan.",
+ features:["Passenger lift","Secure intercom entry","LED lighting","Central heating","Suspended ceilings","Carpets and window blinds","Perimeter trunking to parts","Café on the ground floor"],
+ accom:[["First floor suite (three rooms)",887,82.41]],
+ location:"Rise House fronts High Street with views down Church Street to Rotherham Minster. The pedestrianised centre, shops and cafés are a short walk away, and cars reach the building from the top of High Street.",
+ transport:[["Wellgate / Doncaster Gate bus stop","0.06 mi"],["Corporation St / Market St bus stop","0.07 mi"],["Rotherham Central station","0.22 mi"],["Meadowhall station","2.51 mi"]],
+ services:"Mains electricity, water and drainage are understood to be connected."},
+{id:"5360",type:["Office","Retail"],tenure:"let",draw:"retail",
+ title:"Ground-floor showroom or offices with rear parking",
+ address:"15 High Street",area:"Rotherham town centre",town:"Rotherham",postcode:"S60 1PT",
+ rent:1000,rentNote:"Initial rent",sqft:854,m2:79.34,rv:13500,lease:"New lease",epc:[{label:"Premises",rating:99,band:"D"}],photos:8,
+ summary:"A prominent ground floor on High Street that works equally well as a professional office or a retail showroom. It has a reception, a meeting room and three private offices, with a kitchenette at the back opening onto the car park.",
+ features:["Reception area","Meeting room plus three private offices","Rear car park","Kitchenette and WCs","Electric security shutter","Gas central heating","Glazed partitioning","Carpeted throughout"],
+ accom:[["Ground floor (net internal)",854,79.34]],
+ location:"On High Street in the town centre, next to the newly landscaped Snail Hill Pocket Park. Cafés, bars, restaurants and shops are all within a few minutes' walk.",
+ transport:[["Wellgate / Doncaster Gate bus stop","0.06 mi"],["Corporation St / Market St bus stop","0.07 mi"],["Rotherham Central station","0.23 mi"],["Meadowhall station","2.51 mi"]],
+ services:"Mains gas, electricity, water and drainage are understood to be connected."},
+{id:"5781",type:["Retail"],tenure:"sale",draw:"retail",
+ title:"Freehold shop with warehouse, garage and a one-bed flat above",
+ address:"82 & 82a Broad Street, Parkgate",area:"Parkgate",town:"Rotherham",postcode:"S62 6EQ",
+ price:125000,priceQual:"Offers over",sqft:1657,m2:153.94,rv:3700,rvNote:"Listed as shop and premises",tenureDetail:"Freehold",
+ epc:[{label:"Shop (No. 82)",rating:128,band:"F"},{label:"Flat (No. 82a)",rating:53,band:"E",domestic:true}],photos:10,
+ summary:"A mid-terrace shop on Broad Street with a surprising amount behind it: stores, a warehouse with steel loading doors to the yard, a cellar, an outbuilding and a sectional garage. The self-contained one-bed flat upstairs could bring in a separate income.",
+ features:["Freehold","Self-contained one-bed flat (No. 82a)","Warehouse with rear loading doors","Rear yard, outbuilding and garage","Basement cellar","Suits retail, salon or trade use","Stores could become a staff room","Bus stop right outside"],
+ accom:[["Sales area",102,9.49],["Stores",331,30.72],["Warehouse",573,53.18],["One-bed flat (first floor)",251,23.35]],
+ accomNote:"Basement cellar, outbuilding and garage are in addition to the rooms listed.",
+ location:"Parkgate sits about two miles north of Rotherham town centre, close to Parkgate Shopping Park and Retail World. The A633 is on the doorstep, with the A630 Parkway and M1 junctions 33 and 34 a short drive away.",
+ transport:[["Broad St / Foundry St bus stop","0.03 mi"],["Broad St / Foundry St (opposite)","0.04 mi"],["Rotherham Central station","1.45 mi"],["Swinton station","2.91 mi"]],
+ services:"Mains gas, electricity, water and drainage are understood to be connected."},
+{id:"7502",type:["Industrial","Office"],tenure:"sale",draw:"industrial",
+ title:"Four freehold workshop units and a front office with a secure yard",
+ address:"Units 1–4 rear of 94–100 & 90 Melton High Street",area:"Wath upon Dearne",town:"Rotherham",postcode:"S63 6RF",
+ price:350000,priceQual:"Offers over",sqft:3774,m2:350.62,rv:null,rvNote:"Several assessments; ask us for the breakdown",tenureDetail:"Freehold",
+ epc:null,epcNote:"Separate EPCs for each unit, available on request",photos:16,
+ summary:"A small freehold estate: four workshop units around a shared yard closed off by palisade fencing and gates, plus a single-storey office building on the street frontage. Owner-occupy part and let the rest, or hold the whole site as an investment.",
+ features:["Freehold","Four workshop units","Secure palisade-fenced yard","Large roller shutter to Unit 1","Front office, recently re-carpeted","Security shutters to office","First-floor office and WC in one unit","Neighbours have a right of way over the drive"],
+ accom:[["No. 90 (front office)",321,29.82],["Unit 1",1749,162.49],["Unit 2",593,55.09],["Unit 3",699,64.94],["Unit 4",412,38.28]],
+ accomNote:"Approximate gross internal areas. Units 1–3 form a terrace, two of them linked internally; Unit 4 stands alone.",
+ location:"On Melton High Street in West Melton, a mixed area of light industry and housing north-east of Rotherham. Wath upon Dearne town centre is about a mile east.",
+ transport:[["Nearest bus stops","0.05 mi"],["Bolton-on-Dearne station","2.25 mi"],["Wombwell station","2.49 mi"]],
+ services:"Mains electricity, water and drainage are understood to be connected."},
+{id:"2546",type:["Office"],tenure:"sale",draw:"office",
+ title:"Detached two-storey office building with 27 parking spaces",
+ address:"Riverside Works, 9–12 Jessops Riverside, 800 Brightside Lane",area:"Sheffield (Meadowhall)",town:"Sheffield",postcode:"S9 2RX",
+ price:975000,priceQual:"Asking price",sqft:10387,m2:964.98,rv:127000,rvNote:"Combined total of three assessments",tenureDetail:"Leasehold",
+ epc:[{label:"Building",rating:29,band:"B"}],photos:13,
+ summary:"A purpose-built brick office of around 20 years old on the Jessops Riverside development, a mile from M1 junction 34. Efficient floorplates wrap a central core, with raised floors, new air conditioning and a lift. It comes with 27 allocated spaces and landscaped grounds.",
+ features:["27 allocated parking spaces","Passenger lift","New air conditioning","Full-access raised floors","Suspended ceilings, part LED","WCs on both floors, shower on ground","Recently renewed kitchen","Flood barriers and CCTV"],
+ accom:[["Ground floor",5219,484.86],["First floor",5168,480.12]],
+ rvList:[["9–12 Jessops Riverside (part ground)",55000],["Part first floor (Support Dogs Ltd)",29000],["Part first floor (Keyfund Investments Ltd)",43000]],
+ location:"On the A6109 Brightside Lane, which links the M1 to Sheffield city centre and serves Meadowhall. Meadowhall and IKEA are within walking distance and buses run every seven minutes.",
+ transport:[["Bus stops","0.09 mi"],["Meadowhall station & Supertram","0.75 mi"],["Darnall station","1.64 mi"],["M1 junction 34","1 mi"]],
+ services:"Mains electricity, water and drainage are understood to be connected."}
+];
+
+var SERVICES=[
+ ["Sales & lettings","We appraise the property, market it to the right occupiers, agree terms and see the deal through to legal completion.","M4 20h16M6 20V9l6-5 6 5v11M10 20v-6h4v6"],
+ ["Property management","Rent invoicing and collection, service charges, financial statements and regular inspections to keep tenants to their lease.","M4 6h16v12H4zM4 10h16M8 14h4"],
+ ["Valuations","Reports for marketing appraisals through to full secured-lending valuations for banks, by qualified, experienced surveyors.","M4 18h16M7 18V11M12 18V7M17 18v-4"],
+ ["Rent reviews & lease renewals","We act for landlords and tenants, set out what the market supports and negotiate the review or new lease.","M7 4h7l4 4v12H7zM14 4v4h4M10 13h5M10 16h5"],
+ ["Compulsory purchase & compensation","Advice and negotiation for owners, occupiers, local authorities and statutory bodies.","M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"],
+ ["Business rates","Business rates are often the biggest outgoing after rent. We check your rateable value and challenge it where it's wrong.","M5 5h14v14H5zM9 9h6M9 12h6M9 15h3"],
+ ["Expert witness & disputes","Independent expert evidence and support with commercial property disputes.","M12 4v16M5 8h14M7 8l-3 7h6zM17 8l-3 7h6z"]
+];
+
+/* ---------- helpers ---------- */
+var $=function(s,r){return (r||document).querySelector(s)};
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function gbp(n){return "£"+Math.round(n).toLocaleString("en-GB")}
+function n0(n){return Math.round(n).toLocaleString("en-GB")}
+function priceMain(p){return p.tenure==="sale"?gbp(p.price):gbp(p.rent)+" pcm"}
+function priceSub(p){
+  if(p.tenure==="sale") return (p.priceQual||"")+" · "+gbp(p.price/p.sqft)+"/sq ft";
+  return "+ VAT · "+gbp(p.rent*12)+" pa · "+gbp(p.rent*12/p.sqft)+"/sq ft";
+}
+function annual(p){return p.tenure==="sale"?p.price:p.rent*12}
+var store={get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+var shortlist=store.get("cpr-shortlist",[]);
+function isSaved(id){return shortlist.indexOf(id)>-1}
+function toggleSave(id){var i=shortlist.indexOf(id);if(i>-1)shortlist.splice(i,1);else shortlist.push(id);store.set("cpr-shortlist",shortlist);updateCount();return i<0}
+function updateCount(){$("#slCount").textContent=shortlist.length}
+function toast(msg){var t=document.createElement("div");t.className="toast";t.setAttribute("role","status");t.textContent=msg;document.body.appendChild(t);setTimeout(function(){t.remove()},2200)}
+function drawUse(k){return '<svg class="draw" viewBox="0 0 120 80" aria-hidden="true"><use href="#d-'+k+'"/></svg>'}
+function boardTag(p){return '<span class="boardtag'+(p.tenure==="let"?" let":"")+'">'+(p.tenure==="let"?"To let":"For sale")+'</span>'}
+function heartBtn(p){var s=isSaved(p.id);return '<button class="heart" data-save="'+p.id+'" aria-pressed="'+s+'" aria-label="'+(s?"Remove from":"Add to")+' shortlist"><svg><use href="#i-heart"/></svg></button>'}
+
+function card(p){
+  return '<article class="card">'+
+   '<div class="plate">'+boardTag(p)+drawUse(p.draw)+'</div>'+heartBtn(p)+
+   '<div class="card-body"><span class="card-type">'+p.type.join(" · ")+' · '+esc(p.area)+'</span>'+
+   '<h3><a href="#p-'+p.id+'">'+esc(p.title)+'</a></h3>'+
+   '<p class="card-addr">'+esc(p.address)+', '+esc(p.town)+' '+p.postcode+'</p>'+
+   '<div class="card-stats"><div class="price">'+priceMain(p)+'<small>'+esc(priceSub(p))+'</small></div>'+
+   '<div class="size">'+n0(p.sqft)+' sq ft<small>'+p.m2.toFixed(1)+' m²</small></div></div></div></article>';
+}
+
+/* ---------- filters ---------- */
+var F={tenure:"any",types:[],size:"any",area:"any",q:"",sort:"newest",saved:false,view:"grid"};
+var SIZE={any:[0,1e9],s:[0,1000],m:[1000,5000],l:[5000,1e9]};
+function match(p,f){
+  if(f.tenure!=="any"&&p.tenure!==f.tenure)return false;
+  if(f.types.length&&!p.type.some(function(t){return f.types.indexOf(t)>-1}))return false;
+  var r=SIZE[f.size];if(p.sqft<r[0]||p.sqft>=r[1])return false;
+  if(f.area!=="any"&&p.area!==f.area)return false;
+  if(f.saved&&!isSaved(p.id))return false;
+  if(f.q){var hay=(p.title+" "+p.address+" "+p.area+" "+p.town+" "+p.postcode+" "+p.type.join(" ")+" "+p.features.join(" ")).toLowerCase();
+    if(f.q.toLowerCase().split(/\s+/).some(function(w){return w&&hay.indexOf(w)<0}))return false}
+  return true;
+}
+function results(){
+  var r=PROPS.filter(function(p){return match(p,F)});
+  var s=F.sort;
+  r.sort(function(a,b){
+    if(s==="size-asc")return a.sqft-b.sqft; if(s==="size-desc")return b.sqft-a.sqft;
+    if(s==="price-asc")return annual(a)-annual(b); if(s==="price-desc")return annual(b)-annual(a);
+    return PROPS.indexOf(a)-PROPS.indexOf(b);});
+  return r;
+}
+function countFor(fn){return PROPS.filter(fn).length}
+
+/* ---------- views ---------- */
+function vHome(){
+  var featured=PROPS.slice(0,3);
+  return '<section class="hero"><div class="wrap hero-grid"><div>'+
+   '<p class="eyebrow" style="color:var(--board)">Rotherham &amp; South Yorkshire</p>'+
+   '<h1 style="margin-top:14px">Find space for your <em>business</em> to work</h1>'+
+   '<p class="hero-lede">Offices, shops and industrial units for sale and to let, handled by the only Rotherham-based chartered surveyors who deal purely in commercial property.</p>'+
+   '<div class="hero-facts"><span>25+ years local</span><span>RICS regulated</span><span>Landlords &amp; tenants</span></div></div>'+
+   '<form class="search" id="heroSearch" aria-label="Search properties"><h2>Search properties</h2>'+
+   '<div class="seg" role="radiogroup" aria-label="Sale or let">'+
+     '<input type="radio" name="t" id="t-any" value="any" checked><label for="t-any">All</label>'+
+     '<input type="radio" name="t" id="t-let" value="let"><label for="t-let">To let</label>'+
+     '<input type="radio" name="t" id="t-sale" value="sale"><label for="t-sale">For sale</label></div>'+
+   '<div class="row2"><label class="field"><span>Property type</span><select id="hs-type"><option value="">Any type</option><option>Office</option><option>Retail</option><option>Industrial</option></select></label>'+
+   '<label class="field"><span>Size</span><select id="hs-size"><option value="any">Any size</option><option value="s">Under 1,000 sq ft</option><option value="m">1,000–5,000 sq ft</option><option value="l">5,000 sq ft +</option></select></label></div>'+
+   '<label class="field"><span>Location or keyword</span><input id="hs-q" type="search" placeholder="e.g. High Street, Parkgate, S60, parking"></label>'+
+   '<button class="btn btn-board" type="submit">Show '+PROPS.length+' properties</button></form></div></section>'+
+
+   '<section class="band" style="padding-block:40px 0"><div class="wrap"><div class="sectors">'+
+   [["Office","office","Suites, floors and whole buildings"],["Retail","retail","Shops, showrooms and salons"],["Industrial","industrial","Workshops, units and warehouses"],["Land","land","Development land and leisure sites"]].map(function(s){
+     var c=countFor(function(p){return p.type.indexOf(s[0])>-1});
+     return '<a class="sector" href="#properties" '+(s[0]==="Land"?'data-topic="requirement" data-goto="contact"':'data-type="'+s[0]+'"')+'><svg viewBox="0 0 120 80"><use href="#d-'+s[1]+'"/></svg><b>'+(s[0]==="Office"?"Offices":s[0]==="Land"?"Land &amp; leisure":s[0])+'</b><span>'+s[2]+(s[0]==="Land"?" · Ask us":" · "+c+" available")+'</span></a>'}).join("")+
+   '</div></div></section>'+
+
+   '<section class="band"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">Available now</p><h2 style="margin-top:8px">Latest listings</h2></div><a class="btn btn-ghost" href="#properties">View all properties</a></div>'+
+   '<div class="grid">'+featured.map(card).join("")+'</div></div></section>'+
+
+   '<section class="band" style="padding-top:0"><div class="wrap"><div class="paths">'+
+   '<div class="path a"><p class="eyebrow" style="color:inherit;opacity:.7">Owners &amp; landlords</p><h3>Selling or letting a property?</h3><p>Tell us about it and we\'ll come back with a free market appraisal: what it should achieve, who is likely to take it, and how we\'d market it.</p><a class="btn btn-ink" href="#contact" data-topic="valuation">Book a free appraisal</a></div>'+
+   '<div class="path b"><p class="eyebrow">Occupiers &amp; investors</p><h3>Can\'t see the right space?</h3><p>Much of what we handle is let or sold before it reaches the website. Register what you need and we\'ll call you when something fits.</p><ul><li>Size, budget and area</li><li>Sale, lease or either</li><li>Timescale to move</li></ul><a class="btn btn-board" href="#contact" data-topic="requirement">Register a requirement</a></div>'+
+   '</div></div></section>'+
+
+   '<section class="band" style="background:var(--surface);border-top:1px solid var(--line)"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">What we do</p><h2 style="margin-top:8px">Surveying and agency, under one roof</h2><p>From letting a single shop to valuing a portfolio for the bank.</p></div><a class="btn btn-ghost" href="#services">All services</a></div>'+
+   '<div class="svc-list">'+SERVICES.slice(0,6).map(svc).join("")+'</div></div></section>'+
+
+   '<section class="band"><div class="wrap"><div class="creds">'+
+   '<div class="cred"><b>25+</b><span>years in Rotherham commercial property</span></div>'+
+   '<div class="cred"><b>RICS</b><span>regulated chartered surveyors</span></div>'+
+   '<div class="cred"><b>Both sides</b><span>we act for landlords and tenants</span></div>'+
+   '<div class="cred"><b>National</b><span>clients, from sole traders to major corporates</span></div>'+
+   '</div></div></section>';
+}
+function svc(s){return '<div class="svc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="'+s[2]+'"/></svg><h3>'+esc(s[0])+'</h3><p>'+esc(s[1])+'</p></div>'}
+
+function vList(){
+  var areas=[];PROPS.forEach(function(p){if(areas.indexOf(p.area)<0)areas.push(p.area)});
+  function tc(t){return countFor(function(p){return p.type.indexOf(t)>-1})}
+  return '<section class="page-head"><div class="wrap"><p class="crumbs"><a href="#home">Home</a> / Properties</p><h1>Commercial property</h1><p>Every property we are currently marketing in Rotherham and South Yorkshire. Filter by type, tenure and size, and save the ones you like to your shortlist.</p></div></section>'+
+  '<div class="wrap list-layout">'+
+  '<aside class="filters" id="filters" aria-label="Filters">'+
+   '<div class="field"><span>Search</span><input id="f-q" type="search" placeholder="Street, area, postcode…" value="'+esc(F.q)+'"></div>'+
+   '<fieldset><legend>Sale or let</legend><div class="seg">'+
+    ["any","let","sale"].map(function(v){return '<input type="radio" name="ft" id="ft-'+v+'" value="'+v+'"'+(F.tenure===v?" checked":"")+'><label for="ft-'+v+'">'+({any:"All",let:"To let",sale:"For sale"})[v]+'</label>'}).join("")+'</div></fieldset>'+
+   '<fieldset><legend>Property type</legend>'+["Office","Retail","Industrial"].map(function(t){return '<label class="chk"><input type="checkbox" name="ftype" value="'+t+'"'+(F.types.indexOf(t)>-1?" checked":"")+'> '+(t==="Office"?"Offices":t)+'<span class="ct">'+tc(t)+'</span></label>'}).join("")+'</fieldset>'+
+   '<label class="field"><span>Size</span><select id="f-size"><option value="any">Any size</option><option value="s">Under 1,000 sq ft</option><option value="m">1,000–5,000 sq ft</option><option value="l">5,000 sq ft +</option></select></label>'+
+   '<label class="field"><span>Area</span><select id="f-area"><option value="any">All areas</option>'+areas.map(function(a){return '<option>'+esc(a)+'</option>'}).join("")+'</select></label>'+
+   '<label class="chk"><input type="checkbox" id="f-saved"'+(F.saved?" checked":"")+'> Shortlisted only</label>'+
+   '<button class="btn btn-ghost btn-sm" id="f-reset" type="button">Clear filters</button>'+
+  '</aside>'+
+  '<div style="min-width:0"><div class="toolbar"><span class="count" id="count" aria-live="polite"></span>'+
+   '<button class="btn btn-ghost btn-sm filter-toggle" id="fToggle" aria-expanded="false" aria-controls="filters">Filters</button>'+
+   '<label class="sr" for="f-sort">Sort</label><select id="f-sort"><option value="newest">Newest first</option><option value="price-asc">Cost: low to high</option><option value="price-desc">Cost: high to low</option><option value="size-asc">Size: small to large</option><option value="size-desc">Size: large to small</option></select>'+
+   '<select id="f-view" aria-label="Layout"><option value="grid">Grid</option><option value="list">List</option></select></div>'+
+   '<div class="chips" id="chips"></div><div id="results"></div></div></div>';
+}
+function renderResults(){
+  var r=results(), el=$("#results");
+  $("#count").textContent=r.length+" of "+PROPS.length+" properties";
+  el.parentNode.classList.toggle("list-view",F.view==="list");
+  var chips=[];
+  if(F.tenure!=="any")chips.push(["tenure",F.tenure==="let"?"To let":"For sale"]);
+  F.types.forEach(function(t){chips.push(["type:"+t,t])});
+  if(F.size!=="any")chips.push(["size",$("#f-size").selectedOptions[0].text]);
+  if(F.area!=="any")chips.push(["area",F.area]);
+  if(F.q)chips.push(["q","“"+F.q+"”"]);
+  if(F.saved)chips.push(["saved","Shortlisted"]);
+  $("#chips").innerHTML=chips.map(function(c){return '<button class="chip" data-chip="'+esc(c[0])+'">'+esc(c[1])+' <span aria-hidden="true">✕</span><span class="sr">remove filter</span></button>'}).join("");
+  el.innerHTML=r.length?'<div class="grid">'+r.map(card).join("")+'</div>':
+   '<div class="empty"><h3>Nothing matches that yet</h3><p>New space comes in every month, and plenty is let before it is advertised. Tell us what you need and we\'ll call you first.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><a class="btn btn-board" href="#contact" data-topic="requirement">Register a requirement</a><button class="btn btn-ghost" data-clear>Clear filters</button></div></div>';
+  // annotate cost sorting so it is clear rents are compared annually
+}
+function bindList(){
+  $("#f-size").value=F.size;$("#f-area").value=F.area;$("#f-sort").value=F.sort;$("#f-view").value=F.view;
+  renderResults();
+}
+function listInput(e){
+  var t=e.target;if(!$("#results"))return;
+  if(t.id==="f-q")F.q=t.value.trim();
+  else if(t.name==="ft")F.tenure=t.value;
+  else if(t.name==="ftype")F.types=[].slice.call(document.querySelectorAll('input[name="ftype"]:checked')).map(function(x){return x.value});
+  else if(t.id==="f-size")F.size=t.value;
+  else if(t.id==="f-area")F.area=t.value;
+  else if(t.id==="f-saved")F.saved=t.checked;
+  else if(t.id==="f-sort")F.sort=t.value;
+  else if(t.id==="f-view"){F.view=t.value;store.set("cpr-view",F.view)}
+  else return;
+  renderResults();
+}
+function resetF(){F.tenure="any";F.types=[];F.size="any";F.area="any";F.q="";F.saved=false}
+
+var EPC_BANDS=[["A+","#0B7A3E"],["A","#0B8A43"],["B","#2AA34A"],["C","#8DBF3F"],["D","#F2C200"],["E","#F0A030"],["F","#E5652A"],["G","#D7262E"]];
+function epcBlock(p){
+  if(!p.epc)return '<p>'+esc(p.epcNote)+'.</p>';
+  return '<div style="display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">'+p.epc.map(function(e){
+    var bands=e.domestic?EPC_BANDS.slice(1):EPC_BANDS;
+    return '<div><p class="flabel" style="margin-bottom:8px">'+esc(e.label)+(e.domestic?" (domestic)":"")+'</p><div class="epc">'+bands.map(function(b,i){
+      var w=34+i*8;var on=b[0]===e.band;
+      return '<div class="epc-row"><div class="epc-bar" style="width:'+w+'%;background:'+b[1]+';color:'+(b[0]==="D"?"#141B1A":"#fff")+';opacity:'+(on?1:.35)+'">'+b[0]+'</div>'+(on?'<span class="epc-mark">'+e.rating+' · Band '+e.band+'</span>':'')+'</div>'}).join("")+'</div></div>'}).join("")+'</div>';
+}
+function vDetail(p){
+  var sim=PROPS.filter(function(x){return x.id!==p.id&&(x.tenure===p.tenure||x.type.some(function(t){return p.type.indexOf(t)>-1}))}).slice(0,3);
+  var accTotal=p.accom.reduce(function(a,r){return a+r[1]},0), accM=p.accom.reduce(function(a,r){return a+r[2]},0);
+  var mapQ=encodeURIComponent(p.address+", "+p.town+" "+p.postcode);
+  return '<section class="page-head" style="padding-block:20px"><div class="wrap"><p class="crumbs" style="margin:0"><a href="#home">Home</a> / <a href="#properties">Properties</a> / <span class="num">Ref '+p.id+'</span></p></div></section>'+
+  '<div class="wrap detail"><div style="min-width:0">'+
+   '<div class="plate">'+boardTag(p)+drawUse(p.draw)+'</div>'+
+   '<div class="thumbs" aria-label="Photo gallery">'+Array.from({length:Math.min(p.photos,6)},function(_,i){return '<div>'+(i+1)+'/'+p.photos+'</div>'}).join("")+'</div>'+
+   '<div class="d-title"><span class="card-type">'+p.type.join(" · ")+' · '+(p.tenure==="let"?"To let":"For sale")+' · Ref '+p.id+'</span><h1>'+esc(p.title)+'</h1><p class="addr">'+esc(p.address)+', '+esc(p.town)+' <span class="num">'+p.postcode+'</span></p></div>'+
+   '<div class="keyfacts">'+
+    '<div class="kf"><span class="eyebrow">'+(p.tenure==="let"?"Rent":"Price")+'</span><b>'+priceMain(p)+'</b><small>'+esc(p.tenure==="let"?"+ VAT · "+gbp(p.rent*12)+" pa":(p.priceQual||""))+'</small></div>'+
+    '<div class="kf"><span class="eyebrow">Size</span><b>'+n0(p.sqft)+' sq ft</b><small>'+p.m2.toFixed(2)+' m²</small></div>'+
+    '<div class="kf"><span class="eyebrow">'+(p.tenure==="let"?"Terms":"Tenure")+'</span><b>'+esc(p.tenure==="let"?p.lease:p.tenureDetail)+'</b><small>'+(p.tenure==="let"?gbp(p.rent*12/p.sqft)+"/sq ft pa":gbp(p.price/p.sqft)+"/sq ft")+'</small></div>'+
+    '<div class="kf"><span class="eyebrow">Rateable value</span><b>'+(p.rv?gbp(p.rv):"Multiple")+'</b><small>'+esc(p.rvNote||"VOA assessment")+'</small></div>'+
+   '</div>'+
+   '<div class="d-sec"><h2>About this property</h2><p>'+esc(p.summary)+'</p>'+(p.rentNote?'<p><strong style="color:var(--ink)">Rent:</strong> '+esc(p.rentNote)+'.</p>':'')+'</div>'+
+   '<div class="d-sec"><h2>Key features</h2><ul class="feat">'+p.features.map(function(f){return '<li>'+esc(f)+'</li>'}).join("")+'</ul></div>'+
+   '<div class="d-sec"><h2>Accommodation</h2><div class="tbl-wrap"><table><thead><tr><th>Area</th><th class="n">sq ft</th><th class="n">m²</th></tr></thead><tbody>'+
+     p.accom.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td class="n">'+n0(r[1])+'</td><td class="n">'+r[2].toFixed(2)+'</td></tr>'}).join("")+'</tbody>'+
+     (p.accom.length>1?'<tfoot><tr><td>Total of rooms listed</td><td class="n">'+n0(accTotal)+'</td><td class="n">'+accM.toFixed(2)+'</td></tr></tfoot>':'')+'</table></div>'+
+     (p.accomNote?'<p class="small-print" style="font-size:14px">'+esc(p.accomNote)+'</p>':'')+'</div>'+
+   (p.rvList?'<div class="d-sec"><h2>Business rates</h2><div class="tbl-wrap"><table><thead><tr><th>VOA assessment</th><th class="n">Rateable value</th></tr></thead><tbody>'+p.rvList.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td class="n">'+gbp(r[1])+'</td></tr>'}).join("")+'</tbody></table></div><p class="small-print">Rateable value is not the rates payable. Check with the local billing authority.</p></div>':'')+
+   '<div class="d-sec"><h2>Energy performance</h2>'+epcBlock(p)+'</div>'+
+   '<div class="d-sec"><h2>Location</h2><p>'+esc(p.location)+'</p><div class="transport">'+p.transport.map(function(t){return '<div class="tp"><span>'+esc(t[0])+'</span><span>'+esc(t[1])+'</span></div>'}).join("")+'</div>'+
+    '<p><a href="https://www.google.com/maps/search/?api=1&query='+mapQ+'" target="_blank" rel="noopener">Open in Google Maps ↗</a></p></div>'+
+   '<div class="d-sec"><h2>The small print</h2><div class="small-print"><p><b>Services.</b> '+esc(p.services)+' None have been tested by the agent; please check suitability and capacity before committing.</p><p><b>VAT.</b> All figures are quoted exclusive of VAT, which may apply.</p><p><b>Identity checks.</b> Under anti-money-laundering rules, buyers and tenants must provide two forms of ID.</p><p><b>Fixtures and fittings.</b> No warranty is given about working order or suitability.</p></div></div>'+
+  '</div>'+
+  '<aside class="aside"><form class="enq" id="enq" aria-labelledby="enqH">'+
+   '<div class="agent"><span class="logo-mark">CPR</span><div><b>Sole agents</b>Commercial Property Rotherham</div></div>'+
+   '<div class="price">'+priceMain(p)+'<small>'+esc(priceSub(p))+'</small></div>'+
+   '<h2 id="enqH">Arrange a viewing</h2>'+
+   '<label class="field"><span>I\'d like to</span><select id="e-kind"><option>Book a viewing</option><option>Get the brochure</option><option>Ask a question</option>'+(p.tenure==="sale"?'<option>Make an offer</option>':'<option>Discuss terms</option>')+'</select></label>'+
+   '<label class="field"><span>Name</span><input id="e-name" required autocomplete="name"></label>'+
+   '<div class="row2"><label class="field"><span>Phone</span><input id="e-phone" type="tel" autocomplete="tel"></label><label class="field"><span>Email</span><input id="e-email" type="email" required autocomplete="email"></label></div>'+
+   '<label class="field"><span>Message (optional)</span><textarea id="e-msg" placeholder="Preferred days or times, questions about the property…"></textarea></label>'+
+   '<button class="btn btn-board" type="submit">Send enquiry</button>'+
+   '<div><div class="copyline"><span>Call</span><span class="v">'+PHONE+'</span><button type="button" class="copy" data-copy="'+PHONE+'">Copy</button></div>'+
+   '<div class="copyline"><span>Email</span><span class="v">'+EMAIL+'</span><button type="button" class="copy" data-copy="'+EMAIL+'">Copy</button></div></div>'+
+   '</form>'+
+   '<button class="btn btn-ghost" data-save-wide="'+p.id+'" type="button">'+(isSaved(p.id)?"Saved to shortlist ✓":"Save to shortlist")+'</button>'+
+  '</aside></div>'+
+  (sim.length?'<section class="band" style="background:var(--surface);border-top:1px solid var(--line);padding-block:56px"><div class="wrap"><div class="sec-head"><h2>You might also like</h2></div><div class="grid">'+sim.map(card).join("")+'</div></div></section>':'');
+}
+
+function vServices(){
+  return '<section class="page-head"><div class="wrap"><p class="crumbs"><a href="#home">Home</a> / Services</p><h1>Services</h1><p>Chartered surveyors and agents for every stage of owning or occupying commercial property, across Rotherham, South Yorkshire and beyond.</p></div></section>'+
+  '<div class="wrap" style="padding-block:40px 24px"><div class="svc-list">'+SERVICES.map(svc).join("")+'</div></div>'+
+  '<div class="wrap" style="padding-bottom:72px"><div class="paths"><div class="path a"><h3>Need a valuation or appraisal?</h3><p>Tell us about the property and what the valuation is for. We\'ll confirm fees and timescales before any work starts.</p><a class="btn btn-ink" href="#contact" data-topic="valuation">Request a valuation</a></div>'+
+  '<div class="path b"><h3>Rent review or lease due?</h3><p>Get advice early. The months before a review date or lease expiry are when good terms are won.</p><a class="btn btn-board" href="#contact" data-topic="lease">Talk to a surveyor</a></div></div></div>';
+}
+function vAbout(){
+  return '<section class="page-head"><div class="wrap"><p class="crumbs"><a href="#home">Home</a> / About</p><h1>About us</h1><p>Rotherham\'s commercial property specialists.</p></div></section>'+
+  '<div class="wrap two"><div class="prose">'+
+   '<p style="font-size:20px;color:var(--ink)">Commercial Property Rotherham is a firm of chartered surveyors that works only in commercial property: offices, shops, industrial space, leisure and land.</p>'+
+   '<p>We are the only Rotherham-based chartered surveying practice that deals purely in commercial property, and our team has more than 25 years\' experience of the local market. Most of our work is in Rotherham and South Yorkshire, but we act for clients across the country, from individual owners to major corporations.</p>'+
+   '<h2>Both sides of the deal</h2><p>We represent landlords and tenants, buyers and sellers. Knowing what each side needs makes negotiations quicker and outcomes fairer, whether that\'s a first lease on a small unit or a rent review across a portfolio.</p>'+
+   '<h2>Proactive by default</h2><p>We manage a sizeable portfolio of property around the country, and our clients get regular inspections, clear reporting and early warning of lease events, not just rent collection.</p>'+
+  '</div><div style="display:grid;gap:16px">'+
+   '<div class="panel"><h2>Credentials</h2><div class="creds" style="grid-template-columns:1fr 1fr;border:0;padding:0">'+
+    '<div class="cred"><b>RICS</b><span>regulated firm</span></div><div class="cred"><b>25+</b><span>years\' experience</span></div>'+
+    '<div class="cred"><b>Chamber</b><span>member, Barnsley Chamber of Commerce</span></div><div class="cred"><b class="num" style="font-size:22px;font-family:var(--mono)">06713512</b><span>registered company</span></div></div></div>'+
+   '<a class="btn btn-board" href="#contact">Get in touch</a></div></div>';
+}
+var TOPICS={general:"General enquiry",valuation:"Valuation or market appraisal",requirement:"Register a property requirement",lease:"Rent review or lease renewal",management:"Property management"};
+var contactTopic="general";
+function vContact(){
+  return '<section class="page-head"><div class="wrap"><p class="crumbs"><a href="#home">Home</a> / Contact</p><h1>Contact us</h1><p>Call, email or send a message and one of the team will get back to you.</p></div></section>'+
+  '<div class="wrap two"><form class="panel" id="cform" aria-labelledby="cH"><h2 id="cH">Send us a message</h2>'+
+   '<label class="field"><span>What\'s it about?</span><select id="c-topic">'+Object.keys(TOPICS).map(function(k){return '<option value="'+k+'"'+(k===contactTopic?" selected":"")+'>'+TOPICS[k]+'</option>'}).join("")+'</select></label>'+
+   '<div id="reqFields"'+(contactTopic==="requirement"?"":" hidden")+' style="display:grid;gap:14px">'+
+    '<div class="row2"><label class="field"><span>Type</span><select id="r-type"><option>Office</option><option>Retail</option><option>Industrial</option><option>Land</option><option>Any</option></select></label>'+
+    '<label class="field"><span>Sale or let</span><select id="r-ten"><option>To let</option><option>To buy</option><option>Either</option></select></label></div>'+
+    '<div class="row2"><label class="field"><span>Size (sq ft)</span><input id="r-size" placeholder="e.g. 1,000–2,500"></label><label class="field"><span>Area</span><input id="r-area" placeholder="e.g. Rotherham centre"></label></div></div>'+
+   '<label class="field"><span>Name</span><input id="c-name" required autocomplete="name"></label>'+
+   '<div class="row2"><label class="field"><span>Phone</span><input id="c-phone" type="tel" autocomplete="tel"></label><label class="field"><span>Email</span><input id="c-email" type="email" required autocomplete="email"></label></div>'+
+   '<label class="field"><span>Message</span><textarea id="c-msg" placeholder="The property address, what you need, and the best time to call"></textarea></label>'+
+   '<button class="btn btn-board" type="submit">Send message</button></form>'+
+  '<div style="display:grid;gap:16px"><div class="mapcard"><p class="eyebrow" style="color:var(--board)">Our office</p><address>Suite 7, Riverside Business Exchange<br>1 Phoenix Riverside, Sheffield Road<br>Rotherham S60 1FL</address>'+
+   '<a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent("Riverside Business Exchange, Sheffield Road, Rotherham S60 1FL")+'" target="_blank" rel="noopener">Get directions ↗</a></div>'+
+   '<div class="panel"><div class="copyline" style="border-top:0"><span>Phone</span><span class="v">'+PHONE+'</span><button type="button" class="copy" data-copy="'+PHONE+'">Copy</button></div>'+
+   '<div class="copyline"><span>Email</span><span class="v">'+EMAIL+'</span><button type="button" class="copy" data-copy="'+EMAIL+'">Copy</button></div>'+
+   '</div></div></div>';
+}
+
+/* ---------- router ---------- */
+var app=$("#app");
+function route(){
+  var h=(location.hash||"#home").slice(1), html, cur="";
+  document.body.classList.remove("has-sticky");$("#stickyCta").hidden=true;
+  if(h.indexOf("p-")===0){
+    var p=PROPS.filter(function(x){return x.id===h.slice(2)})[0];
+    if(p){html=vDetail(p);cur="properties";document.title=p.title+" · Commercial Property Rotherham"}
+  }
+  if(!html){
+    if(h==="properties"){html=vList();cur=h}
+    else if(h==="services"){html=vServices();cur=h}
+    else if(h==="about"){html=vAbout();cur=h}
+    else if(h==="contact"){html=vContact();cur=h}
+    else html=vHome();
+    document.title="Commercial Property Rotherham";
+  }
+  app.innerHTML='<div class="view">'+html+'</div>';
+  document.querySelectorAll(".nav a").forEach(function(a){a.toggleAttribute("aria-current",a.getAttribute("href")==="#"+cur);if(a.getAttribute("href")==="#"+cur)a.setAttribute("aria-current","page")});
+  $("#nav").classList.remove("open");$("#menuBtn").setAttribute("aria-expanded","false");
+  if(h==="properties")bindList();
+  if(h.indexOf("p-")===0&&$("#enq")){
+    var s=$("#stickyCta");s.innerHTML='<a class="btn btn-ghost" href="#enq" data-scroll="enq">Enquire</a><button class="btn btn-board" type="button" data-copy="'+PHONE+'">Copy phone number</button>';s.hidden=false;document.body.classList.add("has-sticky");
+  }
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+
+/* ---------- global events ---------- */
+document.addEventListener("click",function(e){
+  var t=e.target.closest("[data-save],[data-save-wide],[data-copy],[data-type],[data-topic],[data-chip],[data-clear],#f-reset,#fToggle,#menuBtn,[data-scroll],#slLink");
+  if(!t)return;
+  if(t.dataset.save){e.preventDefault();var on=toggleSave(t.dataset.save);t.setAttribute("aria-pressed",on);t.setAttribute("aria-label",(on?"Remove from":"Add to")+" shortlist");toast(on?"Added to shortlist":"Removed from shortlist");if($("#results")&&F.saved)renderResults();return}
+  if(t.dataset.saveWide){var on2=toggleSave(t.dataset.saveWide);t.textContent=on2?"Saved to shortlist ✓":"Save to shortlist";toast(on2?"Added to shortlist":"Removed from shortlist");return}
+  if(t.dataset.copy){var v=t.dataset.copy;var ok=function(){toast("Copied "+v)};try{navigator.clipboard.writeText(v).then(ok,function(){toast(v)})}catch(err){toast(v)}return}
+  if(t.id==="slLink"){resetF();F.saved=true;if(location.hash==="#properties"){e.preventDefault();route()}return}
+  if(t.dataset.type){resetF();F.types=[t.dataset.type];if(location.hash==="#properties"){e.preventDefault();route()}return}
+  if(t.dataset.topic){contactTopic=t.dataset.topic;if(t.dataset.goto){e.preventDefault();location.hash="contact"}if(location.hash==="#contact"){e.preventDefault();route()}return}
+  if(t.dataset.chip){var c=t.dataset.chip;if(c==="tenure")F.tenure="any";else if(c.indexOf("type:")===0)F.types=F.types.filter(function(x){return x!==c.slice(5)});else if(c==="size")F.size="any";else if(c==="area")F.area="any";else if(c==="q")F.q="";else if(c==="saved")F.saved=false;route();return}
+  if(t.hasAttribute("data-clear")||t.id==="f-reset"){resetF();route();return}
+  if(t.id==="fToggle"){var f=$("#filters");var o=f.classList.toggle("open");t.setAttribute("aria-expanded",o);return}
+  if(t.id==="menuBtn"){var n=$("#nav");var o2=n.classList.toggle("open");t.setAttribute("aria-expanded",o2);return}
+  if(t.dataset.scroll){e.preventDefault();var el=document.getElementById(t.dataset.scroll);el.scrollIntoView({behavior:"smooth",block:"start"});setTimeout(function(){var i=el.querySelector("select,input");i&&i.focus({preventScroll:true})},400);return}
+});
+document.addEventListener("submit",function(e){
+  e.preventDefault();var f=e.target;
+  if(f.id==="heroSearch"){resetF();F.tenure=f.querySelector('input[name="t"]:checked').value;var ty=$("#hs-type").value;if(ty)F.types=[ty];F.size=$("#hs-size").value;F.q=$("#hs-q").value.trim();location.hash="properties";return}
+  if(f.id==="enq"||f.id==="cform"){
+    if(!f.checkValidity()){f.reportValidity();return}
+    var name=(f.querySelector("#e-name,#c-name").value||"").split(" ")[0];
+    var box=document.createElement("div");box.className="done";box.setAttribute("role","status");box.tabIndex=-1;
+    box.innerHTML='<b>Thanks '+esc(name)+', that\'s ready to go.</b><p>This preview isn\'t connected to an inbox yet, so nothing has been sent. On the live site this enquiry goes straight to the team. For now, call <span class="num">'+PHONE+'</span> or email <span class="num">'+EMAIL+'</span>.</p>';
+    f.replaceWith(box);box.focus();
+  }
+});
+document.addEventListener("change",function(e){if(e.target.id==="c-topic"){contactTopic=e.target.value;var r=$("#reqFields");if(r)r.hidden=contactTopic!=="requirement"}});
+
+document.addEventListener("input",listInput);document.addEventListener("change",listInput);
+F.view=store.get("cpr-view","grid");
+updateCount();route();
+})();
+</script>
+
+</body>
+</html>
